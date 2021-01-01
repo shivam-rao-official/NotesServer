@@ -37,10 +37,12 @@ routes.route('/post/:uid').post(async (req, res) => {
     
     try {
         const id = req.params.uid
+        const title = req.body.title
         const notes = req.body.notes      
         
         const NotesModelInstance = new NotesModel({
             uid: id,
+            title: title,
             notes: notes
         })
 
