@@ -55,4 +55,48 @@ routes.route('/post/:uid').post(async (req, res) => {
 })
  
 
+/**
+ * --- Route: To update user's notes to the DB (/update/:uid)
+ * --- Method: PATCH
+ **/
+
+
+routes.route('/update/:uid').patch(async (req, res) => {
+    
+    const uid = req.params.uid
+    const ifUidExists = await NotesModel.find({ uid: uid })
+
+    if (ifUidExists) {
+        try {
+            const updates = req.body
+            const options = {new : true}
+
+            await NotesModel.findByIdAndUpdate(uid, updates, options)
+        } catch (error) {
+            
+        }
+    } else {
+
+    }
+})
+
+
+/**
+ * --- Route: To update user's notes to the DB (/update/:uid)
+ * --- Method: PATCH
+ **/
+
+
+routes.route('/delete/:uid').delete(async (req, res) => {
+    const uid = req.params.uid
+    
+    const ifUidExists = await NotesModel.find({ uid: uid })
+    if (ifUidExists) {
+        await NotesModel.findByIdAndDelete(uid)
+    } else {
+
+    }
+})
+
+
 module.exports = routes
