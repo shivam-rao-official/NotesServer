@@ -6,6 +6,10 @@ const NotesSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    title: {
+        type: String,
+        required: true,
+    },
     notes: {
         type: String,
         required: true
